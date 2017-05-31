@@ -9,8 +9,10 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/eAndrius/bitfinex-go"
+	"os/signal"
 )
 
 var (
@@ -26,6 +28,7 @@ type BotConfig struct {
 	Strategy StrategyConf
 
 	API *bitfinex.API
+	Sleep uint
 }
 
 // BotConfigs ...
@@ -66,8 +69,8 @@ func main() {
 		log.Fatal("Failed to parse config file:" + err.Error())
 	}
 
-	for _, conf := range confs {
-		log.Println("Using Bitfinex user API key: " + conf.Bitfinex.APIKey)
+	for key, conf := range confs {
+		log.Println(strconv.Itoa(key) + ": using bitfinex user api key: " + conf.Bitfinex.APIKey)
 		conf.API = bitfinex.New(conf.Bitfinex.APIKey, conf.Bitfinex.APISecret)
 
 		balance, err := conf.API.WalletBalances()
@@ -84,11 +87,21 @@ func main() {
 			" " + activeWallet + ")")
 
 		if *updateLends {
-			err = executeStrategy(conf, *dryRun)
-			if err != nil {
-				log.Println("WARNING: Failed to execute strategy: " + err.Error())
-				continue
-			}
+			go func() {
+				for {
+					err = executeStrategy(conf, *dryRun)
+					if err != nil {
+						log.Println(strconv.Itoa(key) + ": WARNING: Failed to execute strategy: " + err.Error())
+					}
+					time.Sleep(time.Duration(conf.Sleep) * time.Second)
+				}
+			}()
 		}
 	}
+
+	var signal_channel chan os.Signal
+	signal_channel = make(chan os.Signal, 1)
+	signal.Notify(signal_channel, os.Interrupt)
+
+	<-signal_channel
 }

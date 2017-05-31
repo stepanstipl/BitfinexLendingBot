@@ -2,4 +2,3 @@ package: main
 
 import:
   - package: github.com/eAndrius/bitfinex-go
-  

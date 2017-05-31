@@ -1,0 +1,19 @@
+box:
+  id: golang:1.8.3-alpine
+  cmd: /bin/sh
+build:
+  steps:
+    - script:
+        name: build
+        code: build/build.sh
+
+push-quay:
+  steps:
+    - internal/docker-scratch-push:
+        username: $QUAY_USERNAME
+        password: $QUAY_TOKEN
+        tag:  latest, $WERCKER_GIT_COMMIT
+        repository: quay.io/stepanstipl/bitfinexlendingbot
+        registry: https://quay.io
+        author: Stepan Stipl
+        cmd: /BitfinexLendingBot

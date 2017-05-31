@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;BitfinexLendingBot&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../code.google.com" />
+      <root url="file://$PROJECT_DIR$/../../../cloud.google.com" />
+      <root url="file://$PROJECT_DIR$/../../../speter.net" />
+      <root url="file://$PROJECT_DIR$/../../../google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../code.cloudfoundry.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../code.google.com" />
+      <root url="file://$PROJECT_DIR$/../../../cloud.google.com" />
+      <root url="file://$PROJECT_DIR$/../../../speter.net" />
+      <root url="file://$PROJECT_DIR$/../../../google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../code.cloudfoundry.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

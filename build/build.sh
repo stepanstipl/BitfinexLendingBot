@@ -33,5 +33,5 @@ go test $(glide novendor)
 
 # Copy binary to WERCKER_ROOT
 cp "${APP}" "${WERCKER_OUTPUT_DIR}/"
-mkdir -p "${WERCKER_OUTPUT_DIR}/"
-cp "${WERCKER_SOURCE_DIR}/ca-certificates.crt" /etc/ssl/certs/
+mkdir -p "${WERCKER_OUTPUT_DIR}/etc/ssl/certs/"
+cp "${WERCKER_SOURCE_DIR}/ca-certificates.crt" "${WERCKER_OUTPUT_DIR}/etc/ssl/certs/"
